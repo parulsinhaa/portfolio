@@ -763,10 +763,43 @@ let hist=[];
 
 function am(role,text){const d=document.createElement('div');d.className='msg '+role;const av=document.createElement('div');av.className='mav';av.textContent=role==='ai'?'PS':'U';const mb=document.createElement('div');mb.className='mb2';mb.textContent=text;d.appendChild(av);d.appendChild(mb);dm.appendChild(d);dm.scrollTop=dm.scrollHeight;}
 function at(){const d=document.createElement('div');d.className='msg ai typing';d.id='tym';d.innerHTML='<div class="mav">PS</div><div class="mb2"> </div>';dm.appendChild(d);dm.scrollTop=dm.scrollHeight;}
-async function sm(){const t=di2.value.trim();if(!t)return;di2.value='';am('user',t);hist.push({role:'user',content:t});at();
-try{const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:260,system:CTX,messages:hist})});const data=await r.json();document.getElementById('tym')?.remove();const rep=data.content?.[0]?.text||'Email Parul: parul.sinha.ds2027@adgips.ac.in';am('ai',rep);hist.push({role:'assistant',content:rep});}
-catch{document.getElementById('tym')?.remove();if(location.protocol==='file:'){am('ai','AI chat works on parulsinhaa.vercel.app — browsers block API calls from local file:// URLs. Deploy first.');document.getElementById('dn').style.display='block';}else{am('ai','Connection issue. Email: parul.sinha.ds2027@adgips.ac.in');}}}
-function sc(el){di2.value=el.textContent;document.getElementById('dch').style.display='none';sm();}
+async function sm(){
+  const t=di2.value.trim();
+  if(!t)return;
+
+  di2.value='';
+  am('user',t);
+  hist.push({role:'user',content:t});
+  at();
+
+  try{
+    const r = await fetch('/api/chat',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        messages:hist
+      })
+    });
+
+    const data = await r.json();
+    document.getElementById('tym')?.remove();
+
+    const rep = data.reply || 'Email Parul: parul.sinha.ds2027@adgips.ac.in';
+
+    am('ai',rep);
+    hist.push({role:'assistant',content:rep});
+
+  } catch {
+    document.getElementById('tym')?.remove();
+
+    if(location.protocol==='file:'){
+      am('ai','Deploy on Vercel to use AI');
+      document.getElementById('dn').style.display='block';
+    } else {
+      am('ai','Connection issue. Email: parul.sinha.ds2027@adgips.ac.in');
+    }
+  }
+}
 </script>
 </body>
 </html>
