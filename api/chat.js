@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   try {
-    const { message, history } = req.body;
+    const { messages } = req.body;
 
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -10,24 +10,19 @@ export default async function handler(req, res) {
         "anthropic-version": "2023-06-01"
       },
       body: JSON.stringify({
-        model: "claude-3-sonnet-20240229",
+        model: "claude-3-haiku-20240307",
         max_tokens: 300,
-        messages: [
-          ...history,
-          { role: "user", content: message }
-        ]
+        messages
       })
     });
 
     const data = await response.json();
 
-    res.status(200).json({
-      reply: data.content?.[0]?.text || "No response"
-    });
+    const reply = data.content?.[0]?.text || "No response";
 
-  } catch (err) {
-    res.status(500).json({
-      reply: "AI temporarily unavailable"
-    });
+    res.status(200).json({ reply });
+
+  } catch (error) {
+    res.status(500).json({ reply: "AI temporarily unavailable" });
   }
 }
