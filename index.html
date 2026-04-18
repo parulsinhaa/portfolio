@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Parul Sinha — AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#0a0907;--ink2:#332820;--ghost:#877060;
+  --bg:#f8f5f1;--bg2:#f0ebe3;--bg3:#faf8f5;
+  --sur:rgba(255,255,255,.78);--b:rgba(80,55,35,.1);--b2:rgba(80,55,35,.22);
+  --r:#a04455;--rd:#7a3040;--rl:rgba(160,68,85,.08);
+  --l:#5a4f8f;--ll:rgba(90,79,143,.08);
+  --g:#3d6b4a;--gl:rgba(61,107,74,.08);
+  --a:#8c5f1e;--al:rgba(140,95,30,.08);
+  --sh:0 1px 2px rgba(0,0,0,.04),0 3px 14px rgba(0,0,0,.06);
+  --shx:0 6px 36px rgba(0,0,0,.11),0 1px 6px rgba(0,0,0,.05);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:62px;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.65;overflow-x:hidden;cursor:none;}
+#cr,#cr2{position:fixed;border-radius:50%;pointer-events:none;z-index:99999;}
+#cr{width:7px;height:7px;background:var(--r);top:0;left:0;mix-blend-mode:multiply;}
+#cr2{width:28px;height:28px;border:1.5px solid rgba(160,68,85,.32);top:0;left:0;transition:transform .2s cubic-bezier(.23,1,.32,1);}
+::-webkit-scrollbar{width:2px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:rgba(160,68,85,.2);}
+::selection{background:rgba(160,68,85,.13);color:var(--rd);}
+.s{font-family:'Instrument Serif',serif;}
+.m{font-family:'DM Mono',monospace;}
+.lbl{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ghost);}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:58px;
+  background:rgba(248,245,241,.94);border-bottom:1px solid var(--b);
+  backdrop-filter:blur(18px);display:flex;align-items:center;
+  justify-content:space-between;padding:0 48px;}
+.nname{font-family:'Instrument Serif',serif;font-size:.98rem;color:var(--ink);text-decoration:none;letter-spacing:.01em;}
+.nlinks{display:flex;align-items:center;gap:30px;}
+.nl{font-size:.76rem;color:var(--ghost);text-decoration:none;letter-spacing:.01em;transition:color .2s;}
+.nl:hover{color:var(--ink);}
+.ncta{font-size:.74rem;font-weight:600;padding:7px 17px;border-radius:4px;
+  background:var(--ink);color:var(--bg);text-decoration:none;
+  letter-spacing:.03em;transition:opacity .2s;}
+.ncta:hover{opacity:.82;}
+@media(max-width:760px){nav{padding:0 18px;}.nlinks .nl{display:none;}.nlinks{gap:10px;}}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding:78px 48px 60px;
+  position:relative;overflow:hidden;background:var(--bg3);}
+#cv{position:absolute;inset:0;width:100%;height:100%;}
+.hi{position:relative;z-index:2;max-width:1080px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 380px;gap:72px;align-items:center;}
+@media(max-width:920px){.hi{grid-template-columns:1fr;}#hero{padding:78px 22px 52px;}}
+.htag{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;
+  font-size:.58rem;letter-spacing:.18em;color:var(--ghost);margin-bottom:30px;}
+.hdot{width:5px;height:5px;border-radius:50%;background:var(--g);animation:dp 3s ease infinite;}
+@keyframes dp{0%,100%{opacity:.4;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+.hh1{font-family:'Instrument Serif',serif;font-size:clamp(3.2rem,6vw,5.6rem);
+  letter-spacing:-.04em;line-height:.92;margin-bottom:24px;color:var(--ink);}
+.hh1 em{font-style:italic;color:var(--r);}
+.hsub{font-size:.9rem;font-weight:300;color:var(--ghost);max-width:460px;line-height:1.84;margin-bottom:38px;}
+.hsub strong{color:var(--ink2);font-weight:500;}
+.hbs{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:46px;}
+.btn{display:inline-flex;align-items:center;gap:6px;font-size:.76rem;font-weight:600;
+  letter-spacing:.02em;padding:10px 20px;border-radius:4px;text-decoration:none;
+  cursor:pointer;border:none;transition:all .25s cubic-bezier(.23,1,.32,1);}
+.bd{background:var(--ink);color:var(--bg);}
+.bd:hover{opacity:.84;transform:translateY(-2px);}
+.bo{background:transparent;color:var(--ink2);border:1.5px solid var(--b);}
+.bo:hover{border-color:var(--b2);transform:translateY(-2px);}
+.hst{display:flex;gap:36px;padding-top:32px;border-top:1px solid var(--b);}
+.sn{font-family:'Instrument Serif',serif;font-size:2rem;letter-spacing:-.03em;line-height:1;color:var(--ink);}
+.sl{font-size:.66rem;color:var(--ghost);margin-top:4px;letter-spacing:.03em;}
+
+/* HERO CARD */
+.hcard{background:var(--sur);border:1px solid var(--b);border-radius:12px;padding:26px;box-shadow:var(--shx);}
+@media(max-width:920px){.hcard{display:none;}}
+.hctit{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ghost);margin-bottom:16px;
+  padding-bottom:12px;border-bottom:1px solid var(--b);}
+.hcrow{display:flex;align-items:flex-start;gap:10px;padding:11px 0;border-bottom:1px solid var(--b);}
+.hcrow:last-child{border-bottom:none;}
+.hcico{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;font-family:'DM Mono',monospace;
+  font-size:.54rem;font-weight:500;letter-spacing:.04em;}
+.hcrole{font-size:.76rem;font-weight:600;color:var(--ink);line-height:1.25;}
+.hcorg{font-size:.67rem;color:var(--ghost);margin-top:1px;}
+.hcdt{font-family:'DM Mono',monospace;font-size:.54rem;color:var(--ghost);
+  margin-left:auto;flex-shrink:0;padding-top:1px;white-space:nowrap;}
+
+/* SECTIONS */
+.sec{padding:88px 48px;position:relative;}
+@media(max-width:760px){.sec{padding:60px 18px;}}
+.si{max-width:1080px;margin:0 auto;}
+.div{height:1px;background:var(--b);}
+.sh{margin-bottom:52px;}
+.sh h2{font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,3.2rem);
+  letter-spacing:-.03em;line-height:1.02;color:var(--ink);margin-top:8px;}
+.sh p{font-size:.84rem;color:var(--ghost);margin-top:12px;max-width:460px;line-height:1.8;}
+
+/* ABOUT */
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
+@media(max-width:760px){.ag{grid-template-columns:1fr;gap:36px;}}
+.abio p{font-size:.86rem;color:var(--ink2);line-height:1.86;margin-bottom:13px;}
+.abio strong{color:var(--ink);font-weight:600;}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:20px;}
+.sc{background:var(--sur);border:1px solid var(--b);border-radius:9px;padding:16px;}
+.scn{font-family:'Instrument Serif',serif;font-size:1.8rem;letter-spacing:-.03em;line-height:1;}
+.scl{font-size:.67rem;color:var(--ghost);margin-top:4px;letter-spacing:.02em;}
+.ilist{display:flex;flex-direction:column;gap:8px;}
+.ii{display:flex;align-items:flex-start;gap:12px;padding:13px 15px;border-radius:8px;
+  border:1px solid var(--b);background:var(--sur);
+  transition:all .3s cubic-bezier(.23,1,.32,1);cursor:default;}
+.ii:hover{transform:translateX(4px);box-shadow:var(--sh);}
+.ibar{width:3px;border-radius:0;flex-shrink:0;margin-top:2px;height:34px;}
+.itit{font-weight:600;font-size:.8rem;color:var(--ink);margin-bottom:2px;}
+.isub{font-size:.72rem;color:var(--ghost);line-height:1.5;}
+
+/* PROJECTS */
+.pf{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+@media(max-width:880px){.pf,.pg{grid-template-columns:1fr;}}
+@media(max-width:560px){.pg{grid-template-columns:1fr;}}
+.pc{background:var(--sur);border:1px solid var(--b);border-radius:11px;padding:24px;
+  position:relative;overflow:hidden;cursor:pointer;
+  transition:all .32s cubic-bezier(.23,1,.32,1);}
+.pc:hover{transform:translateY(-4px);box-shadow:var(--shx);border-color:var(--b2);}
+.pc.f{padding:30px;}
+.pb{position:absolute;top:0;left:0;right:0;height:2px;border-radius:11px 11px 0 0;}
+.pcat{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.12em;
+  text-transform:uppercase;display:inline-block;margin-bottom:10px;}
+.ptit{font-family:'Instrument Serif',serif;font-size:.98rem;color:var(--ink);
+  margin-bottom:3px;line-height:1.2;}
+.phk{font-size:.74rem;font-weight:500;margin-bottom:8px;}
+.pdesc{font-size:.73rem;line-height:1.72;color:var(--ghost);margin-bottom:11px;}
+.pmet{font-family:'DM Mono',monospace;font-size:.57rem;padding:3px 9px;
+  border-radius:3px;display:inline-block;margin-bottom:10px;letter-spacing:.04em;}
+.ptags{display:flex;flex-wrap:wrap;gap:4px;}
+.tag{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.04em;
+  padding:2px 7px;border-radius:3px;border:1px solid var(--b);
+  color:var(--ghost);background:rgba(255,255,255,.4);}
+.phint{display:flex;align-items:center;gap:4px;margin-top:10px;font-size:.67rem;
+  color:var(--ghost);opacity:0;transition:opacity .25s;font-family:'DM Mono',monospace;
+  letter-spacing:.04em;}
+.pc:hover .phint{opacity:1;}
+.plink{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:.7rem;
+  font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--b);
+  padding-bottom:1px;transition:border-color .2s;font-family:'DM Mono',monospace;letter-spacing:.04em;}
+.plink:hover{border-color:var(--ink);}
+
+/* SKILLS */
+.swrap{display:grid;grid-template-columns:1fr 1fr;gap:52px;}
+@media(max-width:760px){.swrap{grid-template-columns:1fr;}}
+.sg{margin-bottom:26px;}
+.sgl{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ghost);margin-bottom:9px;
+  padding-bottom:8px;border-bottom:1px solid var(--b);display:block;}
+.sgitems{display:flex;flex-wrap:wrap;gap:5px;}
+.sk{font-size:.74rem;font-weight:500;color:var(--ink2);padding:4px 10px;
+  border-radius:4px;border:1px solid var(--b);background:var(--sur);
+  transition:all .2s;cursor:default;}
+.sk:hover{border-color:var(--b2);background:#fff;transform:translateY(-1px);}
+.sk.c{background:var(--ink);color:var(--bg);border-color:var(--ink);}
+.sk.c:hover{opacity:.84;}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:18px;}
+.cert{padding:10px 13px;border-radius:7px;border:1px solid var(--b);
+  background:var(--sur);transition:all .2s;}
+.cert:hover{box-shadow:var(--sh);border-color:var(--b2);}
+.cnm{font-size:.74rem;font-weight:500;color:var(--ink2);line-height:1.3;}
+.corg{font-family:'DM Mono',monospace;font-size:.56rem;color:var(--ghost);margin-top:2px;}
+
+/* RESEARCH */
+.rl{display:flex;flex-direction:column;gap:11px;}
+.rc{background:var(--sur);border:1px solid var(--b);border-radius:11px;padding:26px;
+  border-left:3px solid;cursor:pointer;transition:all .32s cubic-bezier(.23,1,.32,1);}
+.rc:hover{transform:translateX(5px);box-shadow:var(--sh);border-color:var(--b2);}
+.rcat{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.12em;
+  text-transform:uppercase;margin-bottom:8px;}
+.rtit{font-family:'Instrument Serif',serif;font-size:1.02rem;color:var(--ink);
+  margin-bottom:8px;line-height:1.3;}
+.rabs{font-size:.77rem;color:var(--ghost);line-height:1.76;margin-bottom:12px;}
+.rcont{display:flex;flex-wrap:wrap;gap:5px;}
+.rhint{display:flex;align-items:center;gap:4px;margin-top:9px;font-size:.66rem;
+  color:var(--ghost);opacity:0;transition:opacity .25s;font-family:'DM Mono',monospace;}
+.rc:hover .rhint{opacity:1;}
+
+/* EXPERIENCE */
+.el{display:flex;flex-direction:column;gap:9px;}
+.ec{background:var(--sur);border:1px solid var(--b);border-radius:11px;padding:24px;
+  position:relative;overflow:hidden;transition:all .28s cubic-bezier(.23,1,.32,1);}
+.ec:hover{box-shadow:var(--sh);border-color:var(--b2);}
+.ecb{position:absolute;top:0;left:0;right:0;height:2px;border-radius:11px 11px 0 0;}
+.ect{display:flex;align-items:flex-start;justify-content:space-between;
+  gap:10px;flex-wrap:wrap;margin-bottom:6px;}
+.ecr{font-family:'Instrument Serif',serif;font-size:.93rem;color:var(--ink);line-height:1.2;}
+.eco{font-size:.74rem;font-weight:500;margin-bottom:6px;}
+.ecd{font-family:'DM Mono',monospace;font-size:.55rem;padding:3px 9px;
+  border-radius:3px;flex-shrink:0;white-space:nowrap;}
+.ecdesc{font-size:.74rem;color:var(--ghost);line-height:1.72;margin-bottom:9px;}
+
+/* MARQUEE */
+.mw{overflow:hidden;padding:13px 0;border-top:1px solid var(--b);border-bottom:1px solid var(--b);background:var(--bg2);}
+.mt{display:flex;gap:12px;white-space:nowrap;animation:mq 28s linear infinite;}
+.mt:hover{animation-play-state:paused;}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mi{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.05em;color:var(--ghost);}
+.md2{width:2px;height:2px;border-radius:50%;background:rgba(80,55,35,.18);display:inline-block;margin:0 2px;vertical-align:middle;}
+
+/* AI DEMO */
+.dout{max-width:680px;margin:0 auto;background:var(--sur);border:1px solid var(--b);
+  border-radius:13px;overflow:hidden;box-shadow:var(--shx);}
+.dhdr{padding:12px 20px;border-bottom:1px solid var(--b);display:flex;
+  align-items:center;gap:8px;background:var(--bg2);}
+.dst{width:6px;height:6px;border-radius:50%;background:var(--g);animation:dp 2.5s ease infinite;}
+.dtit{font-size:.78rem;font-weight:600;color:var(--ink2);}
+.dbdg{margin-left:auto;font-family:'DM Mono',monospace;font-size:.55rem;
+  padding:2px 7px;border-radius:3px;border:1px solid var(--b);color:var(--ghost);}
+.dmsgs{min-height:190px;max-height:290px;overflow-y:auto;padding:16px 20px;
+  display:flex;flex-direction:column;gap:8px;}
+.msg{display:flex;gap:7px;align-items:flex-start;}
+.mav{width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Mono',monospace;font-size:.52rem;font-weight:500;
+  flex-shrink:0;margin-top:2px;}
+.msg.user .mav{background:var(--bg2);border:1px solid var(--b);color:var(--ghost);}
+.mb2{padding:8px 12px;border-radius:8px;font-size:.76rem;line-height:1.65;max-width:86%;}
+.msg.ai .mb2{background:var(--bg2);border:1px solid var(--b);color:var(--ink2);}
+.msg.user .mb2{background:var(--rl);border:1px solid rgba(160,68,85,.14);color:var(--ink2);}
+.msg.ai.typing .mb2::after{content:'▌';animation:bc .7s step-start infinite;}
+@keyframes bc{0%,100%{opacity:1}50%{opacity:0}}
+.dchs{display:flex;flex-wrap:wrap;gap:6px;padding:0 20px 13px;}
+.chip{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.02em;
+  padding:5px 10px;border-radius:3px;border:1px solid var(--b);
+  color:var(--ghost);background:var(--sur);cursor:pointer;transition:all .2s;}
+.chip:hover{border-color:rgba(160,68,85,.28);color:var(--r);background:var(--rl);}
+.dbot{padding:12px 20px;border-top:1px solid var(--b);display:flex;gap:7px;}
+.dinp{flex:1;background:var(--bg2);border:1px solid var(--b);border-radius:4px;
+  padding:8px 13px;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:.76rem;
+  outline:none;transition:border-color .25s;}
+.dinp:focus{border-color:var(--b2);}
+.dinp::placeholder{color:var(--ghost);}
+.dsnd{background:var(--ink);color:var(--bg);border:none;padding:8px 14px;
+  border-radius:4px;font-size:.74rem;font-weight:600;cursor:pointer;
+  font-family:'DM Sans',sans-serif;transition:opacity .2s;white-space:nowrap;}
+.dsnd:hover{opacity:.82;}
+.dnote{padding:8px 20px 12px;font-family:'DM Mono',monospace;font-size:.56rem;
+  color:var(--ghost);text-align:center;display:none;border-top:1px solid var(--b);}
+
+/* CONTACT */
+#contact{padding:110px 48px;background:var(--ink);color:var(--bg);text-align:center;}
+@media(max-width:760px){#contact{padding:72px 20px;}}
+.cin{max-width:620px;margin:0 auto;}
+.clbl{font-family:'DM Mono',monospace;font-size:.57rem;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(255,255,255,.32);margin-bottom:16px;display:block;}
+.ch{font-family:'Instrument Serif',serif;font-size:clamp(2.8rem,6vw,5rem);
+  letter-spacing:-.04em;line-height:.92;margin-bottom:20px;}
+.ch em{font-style:italic;color:rgba(255,255,255,.42);}
+.csub{font-size:.86rem;color:rgba(255,255,255,.42);margin-bottom:36px;
+  line-height:1.82;max-width:380px;margin-left:auto;margin-right:auto;}
+.cbs{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-bottom:24px;}
+.bl{background:var(--bg);color:var(--ink);}
+.bl:hover{opacity:.9;transform:translateY(-2px);}
+.bg3{background:transparent;color:rgba(255,255,255,.62);border:1.5px solid rgba(255,255,255,.16);}
+.bg3:hover{border-color:rgba(255,255,255,.36);color:#fff;transform:translateY(-2px);}
+.rrow{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:36px;}
+.rbtn{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.07em;
+  padding:7px 15px;border-radius:4px;border:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.5);cursor:pointer;display:inline-flex;align-items:center;
+  gap:5px;transition:all .25s;}
+.rbtn:hover{border-color:rgba(255,255,255,.36);color:#fff;}
+.srow{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.sli{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.07em;
+  color:rgba(255,255,255,.35);text-decoration:none;display:flex;align-items:center;
+  gap:6px;border-bottom:1px solid transparent;padding:2px 0;transition:all .25s;}
+.sli:hover{color:rgba(255,255,255,.72);border-bottom-color:rgba(255,255,255,.28);}
+.sli svg{width:12px;height:12px;fill:currentColor;flex-shrink:0;}
+
+/* FOOTER */
+.foot{padding:16px 48px;border-top:1px solid var(--b);display:flex;
+  align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;background:var(--bg);}
+@media(max-width:760px){.foot{padding:12px 18px;}}
+.fl{font-family:'DM Mono',monospace;font-size:.57rem;color:var(--ghost);letter-spacing:.07em;}
+
+/* MODAL */
+.mov{position:fixed;inset:0;z-index:9000;background:rgba(10,9,7,.72);
+  backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;
+  padding:18px;opacity:0;pointer-events:none;
+  transition:opacity .28s cubic-bezier(.23,1,.32,1);}
+.mov.open{opacity:1;pointer-events:all;}
+.mo{background:var(--bg);border:1px solid var(--b);border-radius:14px;
+  max-width:640px;width:100%;max-height:85vh;overflow-y:auto;
+  box-shadow:0 22px 72px rgba(0,0,0,.2);
+  transform:translateY(20px) scale(.97);
+  transition:transform .36s cubic-bezier(.23,1,.32,1);}
+.mov.open .mo{transform:translateY(0) scale(1);}
+.mohdr{padding:24px 28px 18px;border-bottom:1px solid var(--b);position:sticky;top:0;
+  background:var(--bg);z-index:2;display:flex;align-items:flex-start;
+  justify-content:space-between;gap:12px;border-radius:14px 14px 0 0;}
+.mox{width:28px;height:28px;border-radius:5px;border:1px solid var(--b);
+  background:var(--sur);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--ghost);flex-shrink:0;font-size:.9rem;transition:all .2s;}
+.mox:hover{background:var(--ink);color:var(--bg);border-color:var(--ink);}
+.mobdy{padding:22px 28px 28px;}
+.mocat{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.14em;
+  text-transform:uppercase;margin-bottom:7px;display:block;}
+.motit{font-family:'Instrument Serif',serif;font-size:1.32rem;color:var(--ink);
+  letter-spacing:-.02em;line-height:1.15;}
+.mose{margin-top:20px;}
+.mosl{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ghost);margin-bottom:8px;display:block;
+  padding-bottom:7px;border-bottom:1px solid var(--b);}
+.motxt{font-size:.8rem;color:var(--ink2);line-height:1.82;}
+.motags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;}
+.momet{display:inline-block;font-family:'DM Mono',monospace;font-size:.6rem;
+  padding:3px 10px;border-radius:3px;letter-spacing:.04em;margin:3px 3px 0 0;}
+.monote{font-size:.68rem;color:var(--ghost);font-style:italic;margin-top:8px;}
+
+/* RESUME PAGES */
+.rp{display:none;position:fixed;inset:0;z-index:8000;background:var(--bg);overflow-y:auto;}
+.rp.open{display:block;}
+.rphdr{position:sticky;top:0;padding:12px 48px;background:rgba(248,245,241,.94);
+  border-bottom:1px solid var(--b);backdrop-filter:blur(16px);
+  display:flex;align-items:center;justify-content:space-between;z-index:2;}
+@media(max-width:600px){.rphdr{padding:10px 18px;}}
+.rpbk{display:flex;align-items:center;gap:5px;font-size:.74rem;font-weight:500;
+  color:var(--ink2);cursor:pointer;border:none;background:none;transition:color .2s;}
+.rpbk:hover{color:var(--ink);}
+.rptit{font-family:'DM Mono',monospace;font-size:.57rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ghost);}
+.rpcnt{max-width:760px;margin:0 auto;padding:48px 48px 72px;}
+@media(max-width:600px){.rpcnt{padding:24px 18px 56px;}}
+.rpname{font-family:'Instrument Serif',serif;font-size:2.6rem;letter-spacing:-.04em;color:var(--ink);margin-bottom:4px;}
+.rprole{font-family:'DM Mono',monospace;font-size:.64rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ghost);margin-bottom:16px;display:block;}
+.rpc{display:flex;flex-wrap:wrap;gap:13px;margin-bottom:28px;
+  padding-bottom:22px;border-bottom:1px solid var(--b);}
+.rpc a{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.04em;
+  color:var(--ink2);text-decoration:none;transition:color .2s;}
+.rpc a:hover{color:var(--r);}
+.rpsec{margin-bottom:28px;}
+.rpsl{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ghost);margin-bottom:12px;
+  padding-bottom:7px;border-bottom:2px solid var(--ink);display:block;}
+.rpit{margin-bottom:16px;}
+.rpit-top{display:flex;align-items:flex-start;justify-content:space-between;
+  gap:12px;flex-wrap:wrap;margin-bottom:3px;}
+.rptitle{font-family:'Instrument Serif',serif;font-size:.92rem;color:var(--ink);}
+.rpdate{font-family:'DM Mono',monospace;font-size:.56rem;color:var(--ghost);flex-shrink:0;}
+.rporg{font-size:.76rem;font-weight:500;color:var(--ink2);margin-bottom:6px;}
+.rpbul{list-style:none;padding:0;}
+.rpbul li{font-size:.76rem;color:var(--ink2);line-height:1.72;padding-left:13px;position:relative;margin-bottom:3px;}
+.rpbul li::before{content:'';position:absolute;left:0;top:.68em;width:4px;height:1px;background:var(--ghost);}
+.rpsg{display:flex;flex-wrap:wrap;gap:5px;}
+.rpsk{font-size:.72rem;font-weight:500;color:var(--ink2);padding:4px 9px;border-radius:3px;border:1px solid var(--b);background:var(--sur);}
+.rpsk.h{background:var(--ink);color:var(--bg);border-color:var(--ink);}
+.rpsump{font-size:.8rem;color:var(--ink2);line-height:1.82;}
+
+/* ANIMATIONS */
+.rev{opacity:0;transform:translateY(20px);transition:opacity .76s cubic-bezier(.23,1,.32,1),transform .76s cubic-bezier(.23,1,.32,1);}
+.rev.on{opacity:1;transform:translateY(0);}
+.revl{opacity:0;transform:translateX(-20px);transition:opacity .76s cubic-bezier(.23,1,.32,1),transform .76s cubic-bezier(.23,1,.32,1);}
+.revl.on{opacity:1;transform:translateX(0);}
+.revr{opacity:0;transform:translateX(20px);transition:opacity .76s cubic-bezier(.23,1,.32,1),transform .76s cubic-bezier(.23,1,.32,1);}
+.revr.on{opacity:1;transform:translateX(0);}
+.d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}.d4{transition-delay:.28s}.d5{transition-delay:.35s}
+.tilt{transform-style:preserve-3d;}
+</style>
+</head>
+<body>
+<div id="cr"></div><div id="cr2"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nname">Parul Sinha</a>
+  <div class="nlinks">
+    <a href="#about" class="nl">About</a>
+    <a href="#projects" class="nl">Projects</a>
+    <a href="#skills" class="nl">Skills</a>
+    <a href="#research" class="nl">Research</a>
+    <a href="#ai-demo" class="nl">AI Demo</a>
+    <a href="#contact" class="nl">Contact</a>
+    <a href="#contact" class="ncta">Open to hire</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="cv"></canvas>
+  <div class="hi">
+    <div>
+      <div class="htag rev" style="transition-delay:.04s"><span class="hdot"></span>AI · ML · NLP · Data Science · GenAI</div>
+      <h1 class="hh1 rev" style="transition-delay:.13s">Building AI<br>systems that<br><em>actually work.</em></h1>
+      <p class="hsub rev" style="transition-delay:.22s">I'm <strong>Parul Sinha</strong> — an AI/ML engineer building transformer systems, LLM pipelines, and computer vision products. Models deployed at the <strong>Indian Navy</strong>. GGSIPU Delhi, Class of 2027. CGPA 9.2.</p>
+      <div class="hbs rev" style="transition-delay:.3s">
+        <a href="#projects" class="btn bd">View Projects</a>
+        <a href="#ai-demo" class="btn bo">Try AI Demo</a>
+        <a href="#contact" class="btn bo">Contact</a>
+      </div>
+      <div class="hst rev" style="transition-delay:.38s">
+        <div><div class="sn" id="c1">0</div><div class="sl">Projects</div></div>
+        <div><div class="sn" id="c2">0</div><div class="sl">Internships</div></div>
+        <div><div class="sn" id="c3">0.0</div><div class="sl">CGPA</div></div>
+        <div><div class="sn" id="c4">0%</div><div class="sl">Peak accuracy</div></div>
+        <div><div class="sn" id="c5">0</div><div class="sl">Papers</div></div>
+      </div>
+    </div>
+    <div class="hcard rev" style="transition-delay:.28s">
+      <div class="hctit">Experience & Education</div>
+      <div class="hcrow"><div class="hcico" style="background:var(--rl);color:var(--rd)">ML</div><div><div class="hcrole">Data Scientist Intern</div><div class="hcorg">Indian Navy</div></div><div class="hcdt">Aug–Nov 2025</div></div>
+      <div class="hcrow"><div class="hcico" style="background:var(--ll);color:var(--l)">DA</div><div><div class="hcrole">Data Analyst Intern</div><div class="hcorg">AMP Motors · JLR</div></div><div class="hcdt">Jul–Aug 2025</div></div>
+      <div class="hcrow"><div class="hcico" style="background:var(--gl);color:var(--g)">AI</div><div><div class="hcrole">Google Campus Ambassador</div><div class="hcorg">Google · Gemini AI</div></div><div class="hcdt">Oct 25–Jan 26</div></div>
+      <div class="hcrow"><div class="hcico" style="background:var(--al);color:var(--a)">CO</div><div><div class="hcrole">Founder</div><div class="hcorg">Crochee.co</div></div><div class="hcdt">Ongoing</div></div>
+      <div class="hcrow"><div class="hcico" style="background:var(--rl);color:var(--rd)">BSc</div><div><div class="hcrole">B.Tech CSE — AI & DS</div><div class="hcorg">GGSIPU Delhi · 9.2 CGPA</div></div><div class="hcdt">2023–2027</div></div>
+    </div>
+  </div>
+  <div style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;z-index:2;opacity:.38">
+    <span class="m" style="font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ghost)">scroll</span>
+    <div style="width:1px;height:34px;background:linear-gradient(to bottom,var(--ghost),transparent);animation:sa 2.2s ease infinite"></div>
+  </div>
+</section>
+<style>@keyframes sa{0%,100%{opacity:.2;transform:scaleY(.5)}55%{opacity:.9;transform:scaleY(1)}}</style>
+
+<!-- ABOUT -->
+<section id="about" class="sec" style="background:var(--bg2)">
+  <div class="si">
+    <div class="sh rev"><span class="lbl">Profile</span><h2>Why hire me.</h2></div>
+    <div class="ag">
+      <div class="abio revl">
+        <p>I'm an <strong>AI & Data Science undergraduate</strong> who ships production ML systems — not notebook experiments. My models run in the field.</p>
+        <p>At the <strong>Indian Navy</strong>, I built real-time threat detection at 95% accuracy under operational constraints. At <strong>Jaguar Land Rover</strong>, I turned customer data into go-to-market strategy. I've published <strong>2 research papers</strong> and built 14+ projects across NLP, computer vision, GenAI, and data intelligence.</p>
+        <p>I evaluate models, iterate with purpose, and ship with interpretability in mind. I also built two live apps — <a href="https://photobooth.vercel.app" target="_blank" style="color:var(--r);text-decoration:none;border-bottom:1px solid var(--b)">Photobooth</a> and <a href="https://careerrforge.vercel.app" target="_blank" style="color:var(--r);text-decoration:none;border-bottom:1px solid var(--b)">CareerForge</a> — deployed and live.</p>
+        <div style="margin-top:22px;display:flex;flex-wrap:wrap;gap:8px">
+          <a href="#contact" class="btn bd" style="font-size:.72rem;padding:8px 16px">Get in touch</a>
+          <a href="#projects" class="btn bo" style="font-size:.72rem;padding:8px 16px">See the work</a>
+        </div>
+      </div>
+      <div class="revr">
+        <div class="sgrid">
+          <div class="sc"><div class="scn" style="color:var(--r)">9.2</div><div class="scl">CGPA</div></div>
+          <div class="sc"><div class="scn" style="color:var(--l)">95%</div><div class="scl">Peak accuracy</div></div>
+          <div class="sc"><div class="scn" style="color:var(--g)">14+</div><div class="scl">Projects</div></div>
+          <div class="sc"><div class="scn" style="color:var(--a)">2</div><div class="scl">Research papers</div></div>
+        </div>
+        <div class="ilist">
+          <div class="ii"><div class="ibar" style="background:var(--r)"></div><div><div class="itit">AI / ML Engineer</div><div class="isub">End-to-end systems: dataset curation through production API deployment.</div></div></div>
+          <div class="ii"><div class="ibar" style="background:var(--l)"></div><div><div class="itit">Data Scientist / Analyst</div><div class="isub">Statistical rigor, EDA depth, precision-recall thinking on every build.</div></div></div>
+          <div class="ii"><div class="ibar" style="background:var(--g)"></div><div><div class="itit">GenAI / Agentic AI Builder</div><div class="isub">LLM pipelines, RAG, multi-agent systems, smolagents (HuggingFace).</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="div"></div>
+
+<!-- PROJECTS -->
+<section id="projects" class="sec" style="background:var(--bg3)">
+  <div class="si">
+    <div class="sh rev"><span class="lbl">Work</span><h2>14 projects.<br>All shipped.</h2><p>Click any card for full technical breakdown. Live links where available.</p></div>
+    <div class="pf">
+      <div class="pc f rev d1 tilt" onclick="om('drone')"><div class="pb" style="background:linear-gradient(90deg,var(--r),var(--l))"></div><div class="pcat" style="color:var(--r)">Defense · Computer Vision · Featured</div><div class="ptit">Drone Detection System</div><div class="phk" style="color:var(--r)">Real-time aerial threat ID at 20+ FPS</div><p class="pdesc">Custom YOLOv8 pipeline for drone identification with edge-level inference. Multi-condition augmentation. Deployed in operational defense context.</p><div class="pmet" style="background:var(--rl);color:var(--rd)">90% mAP · 20+ FPS · Production</div><div class="ptags"><span class="tag">YOLOv8</span><span class="tag">OpenCV</span><span class="tag">Python</span><span class="tag">Edge Inference</span></div><div class="phint">↗ Full breakdown</div></div>
+      <div class="pc f rev d2 tilt" onclick="om('doc')"><div class="pb" style="background:linear-gradient(90deg,var(--l),var(--g))"></div><div class="pcat" style="color:var(--l)">NLP · LLMs · Published Research</div><div class="ptit">Offline Document Understanding</div><div class="phk" style="color:var(--l)">OCR + LLMs + FAISS — Published</div><p class="pdesc">Document intelligence: OCR extraction, LLM semantic understanding, FAISS retrieval. BM25/dense/hybrid benchmarking. Published research.</p><div class="pmet" style="background:var(--ll);color:var(--l)">Published · FAISS · Hybrid RAG</div><div class="ptags"><span class="tag">LLMs</span><span class="tag">OCR</span><span class="tag">FAISS</span><span class="tag">RAG</span></div><div class="phint">↗ Full breakdown</div></div>
+      <div class="pc f rev d3 tilt" onclick="om('bert')"><div class="pb" style="background:linear-gradient(90deg,var(--g),var(--a))"></div><div class="pcat" style="color:var(--g)">NLP · Transformers</div><div class="ptit">Fake News Detection (BERT)</div><div class="phk" style="color:var(--g)">Fine-tuned transformer for misinformation</div><p class="pdesc">BERT fine-tuned on misinformation corpus. F1-score optimized, error analysis conducted. Flask REST API deployed.</p><div class="pmet" style="background:var(--gl);color:var(--g)">Flask API Deployed · F1 Optimized</div><div class="ptags"><span class="tag">BERT</span><span class="tag">HuggingFace</span><span class="tag">Flask</span><span class="tag">TF</span></div><div class="phint">↗ Full breakdown</div></div>
+      <div class="pc f rev d4 tilt" onclick="om('fraud')"><div class="pb" style="background:linear-gradient(90deg,var(--a),var(--r))"></div><div class="pcat" style="color:var(--a)">ML · Finance · Published Research</div><div class="ptit">Fraud Detection ML System</div><div class="phk" style="color:var(--a)">95% accuracy — published paper</div><p class="pdesc">Ensemble ML (RF + LR) with SMOTE. Precision-recall threshold optimization. Full ablation study. Published research.</p><div class="pmet" style="background:var(--al);color:var(--a)">95% Accuracy · SMOTE · Published</div><div class="ptags"><span class="tag">Scikit-learn</span><span class="tag">SMOTE</span><span class="tag">Ensemble</span></div><div class="phint">↗ Full breakdown</div></div>
+    </div>
+    <div class="pg">
+      <div class="pc rev d1 tilt" onclick="om('photobooth')"><div class="pb" style="background:var(--r)"></div><div class="pcat" style="color:var(--r)">Computer Vision · Live App</div><div class="ptit">AI Photobooth</div><div class="phk" style="color:var(--r)">Live at photobooth.vercel.app</div><p class="pdesc">Real-time AI photobooth with deep learning face detection and dynamic CV filters. Deployed and publicly accessible.</p><a class="plink" href="https://photobooth.vercel.app" target="_blank" onclick="event.stopPropagation()">Live app ↗</a><div class="ptags"><span class="tag">OpenCV</span><span class="tag">Flask</span><span class="tag">Python</span></div><div class="phint">↗ Details</div></div>
+      <div class="pc rev d2 tilt" onclick="om('careerforge')"><div class="pb" style="background:var(--l)"></div><div class="pcat" style="color:var(--l)">GenAI · Full-stack · Live App</div><div class="ptit">CareerForge</div><div class="phk" style="color:var(--l)">Live at careerrforge.vercel.app</div><p class="pdesc">AI-powered career tools built with LLM APIs. Resume analysis, job matching, interview prep. Deployed and live.</p><a class="plink" href="https://careerrforge.vercel.app" target="_blank" onclick="event.stopPropagation()">Live app ↗</a><div class="ptags"><span class="tag">LLMs</span><span class="tag">Flask</span><span class="tag">GenAI</span></div><div class="phint">↗ Details</div></div>
+      <div class="pc rev d3 tilt" onclick="om('agents')"><div class="pb" style="background:var(--g)"></div><div class="pcat" style="color:var(--g)">Agentic AI · HuggingFace</div><div class="ptit">AI Agents (smolagents)</div><div class="phk" style="color:var(--g)">Multi-agent systems with ReAct</div><p class="pdesc">Autonomous agents using smolagents framework: CodeAgent, ToolCallingAgent, multi-agent orchestration, E2B sandboxing, web search integration.</p><div class="ptags"><span class="tag">smolagents</span><span class="tag">HuggingFace</span><span class="tag">ReAct</span><span class="tag">E2B</span></div><div class="phint">↗ Details</div></div>
+      <div class="pc rev d1 tilt" onclick="om('emotion')"><div class="pb" style="background:var(--a)"></div><div class="pcat" style="color:var(--a)">Deep Learning · Research</div><div class="ptit">Multimodal Emotion Detection</div><div class="phk" style="color:var(--a)">Vision + Language fusion</div><p class="pdesc">Cross-modal attention for emotion classification. Vision + NLP fusion benchmarked across datasets.</p><div class="ptags"><span class="tag">OpenCV</span><span class="tag">NLP</span><span class="tag">TensorFlow</span></div><div class="phint">↗ Details</div></div>
+      <div class="pc rev d2 tilt" onclick="om('hr')"><div class="pb" style="background:var(--r)"></div><div class="pcat" style="color:var(--r)">BI · Predictive Analytics</div><div class="ptit">HR Attrition Intelligence</div><div class="phk" style="color:var(--r)">Predictive BI for retention</div><p class="pdesc">Attrition drivers across salary bands, tenure, KPIs. SHAP explainability for leadership.</p><div class="ptags"><span class="tag">Scikit-learn</span><span class="tag">Power BI</span><span class="tag">SHAP</span></div><div class="phint">↗ Details</div></div>
+      <div class="pc rev d3 tilt" onclick="om('retail')"><div class="pb" style="background:var(--l)"></div><div class="pcat" style="color:var(--l)">Analytics · Marketing</div><div class="ptit">Retail Customer 360°</div><div class="phk" style="color:var(--l)">RFM at 50K+ transactions</div><p class="pdesc">RFM segmentation, CLV scoring, churn prediction on 50,000+ retail transactions.</p><div class="ptags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">K-Means</span></div><div class="phint">↗ Details</div></div>
+      <div class="pc rev d1 tilt" onclick="om('finpilot')"><div class="pb" style="background:var(--g)"></div><div class="pcat" style="color:var(--g)">Finance · ML</div><div class="ptit">FinPilot</div><div class="phk" style="color:var(--g)">Financial analytics engine</div><p class="pdesc">Anomaly detection, trend forecasting, Power BI dashboards for data-backed financial decisions.</p><div class="ptags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Power BI</span></div><div class="phint">↗ Details</div></div>
+      <div class="pc rev d2 tilt" onclick="om('stock')"><div class="pb" style="background:var(--a)"></div><div class="pcat" style="color:var(--a)">Finance · Time Series</div><div class="ptit">StockSenseAI</div><div class="phk" style="color:var(--a)">ML stock prediction</div><p class="pdesc">Time-series ML for stock trend analysis. Feature-engineered OHLCV signals, multi-metric evaluation.</p><div class="ptags"><span class="tag">TensorFlow</span><span class="tag">LSTM</span><span class="tag">Pandas</span></div><div class="phint">↗ Details</div></div>
+      <div class="pc rev d3 tilt" onclick="om('astra')"><div class="pb" style="background:var(--r)"></div><div class="pcat" style="color:var(--r)">GenAI · Full-stack</div><div class="ptit">Astra AI</div><div class="phk" style="color:var(--r)">LLM-powered assistant</div><p class="pdesc">Full-stack AI assistant with conversation memory, context management, Flask REST backend.</p><div class="ptags"><span class="tag">LLMs</span><span class="tag">Flask</span><span class="tag">Prompt Eng.</span></div><div class="phint">↗ Details</div></div>
+      <div class="pc rev d1 tilt" onclick="om('student')"><div class="pb" style="background:var(--l)"></div><div class="pcat" style="color:var(--l)">EdTech · Predictive ML</div><div class="ptit">Student Performance Predictor</div><div class="phk" style="color:var(--l)">ML for academic outcomes</div><p class="pdesc">Behavioral and demographic feature classification with SHAP-based interpretability.</p><div class="ptags"><span class="tag">Scikit-learn</span><span class="tag">SHAP</span><span class="tag">EDA</span></div><div class="phint">↗ Details</div></div>
+    </div>
+  </div>
+</section>
+<div class="div"></div>
+
+<!-- SKILLS -->
+<section id="skills" class="sec" style="background:var(--bg2)">
+  <div class="si">
+    <div class="sh rev"><span class="lbl">Technical Stack</span><h2>Everything I<br>know and build with.</h2></div>
+    <div class="swrap">
+      <div class="revl">
+        <div class="sg"><span class="sgl">Core Programming</span><div class="sgitems"><span class="sk c">Python</span><span class="sk c">SQL</span><span class="sk">C++</span><span class="sk">Bash</span><span class="sk">R (basic)</span></div></div>
+        <div class="sg"><span class="sgl">Machine Learning</span><div class="sgitems"><span class="sk c">Scikit-learn</span><span class="sk c">TensorFlow</span><span class="sk c">PyTorch</span><span class="sk">Keras</span><span class="sk">XGBoost</span><span class="sk">LightGBM</span><span class="sk">SMOTE</span><span class="sk">Feature Engineering</span><span class="sk">Hyperparameter Tuning</span><span class="sk">Cross-Validation</span><span class="sk">Model Evaluation</span><span class="sk">Error Analysis</span><span class="sk">SHAP / XAI</span><span class="sk">MLflow (basic)</span></div></div>
+        <div class="sg"><span class="sgl">NLP & Transformers</span><div class="sgitems"><span class="sk c">HuggingFace</span><span class="sk c">BERT</span><span class="sk c">Transformers</span><span class="sk">Fine-tuning LLMs</span><span class="sk">Tokenization</span><span class="sk">Semantic Search</span><span class="sk">FAISS</span><span class="sk">Prompt Engineering</span><span class="sk">RAG Systems</span><span class="sk">spaCy</span><span class="sk">NLTK</span><span class="sk">NER</span><span class="sk">Text Classification</span></div></div>
+        <div class="sg"><span class="sgl">Agentic AI</span><div class="sgitems"><span class="sk c">smolagents (HuggingFace)</span><span class="sk c">ReAct Framework</span><span class="sk">CodeAgent</span><span class="sk">ToolCallingAgent</span><span class="sk">Multi-Agent Systems</span><span class="sk">E2B Sandboxing</span><span class="sk">LiteLLM</span><span class="sk">DuckDuckGo Tool</span><span class="sk">Agent Orchestration</span><span class="sk">Vision Agents</span></div></div>
+        <div class="sg"><span class="sgl">Computer Vision</span><div class="sgitems"><span class="sk c">YOLOv8</span><span class="sk c">OpenCV</span><span class="sk">Object Detection</span><span class="sk">Image Segmentation</span><span class="sk">Data Augmentation</span><span class="sk">Edge Inference</span><span class="sk">Real-time Detection</span><span class="sk">Face Detection</span></div></div>
+        <div class="sg"><span class="sgl">Generative AI</span><div class="sgitems"><span class="sk c">LLM APIs (Claude, GPT)</span><span class="sk c">Google Gemini</span><span class="sk">Prompt Engineering</span><span class="sk">RAG Architecture</span><span class="sk">LangChain (basic)</span><span class="sk">Vector Databases</span><span class="sk">OCR Pipelines</span><span class="sk">Document AI</span><span class="sk">Context Management</span></div></div>
+      </div>
+      <div class="revr">
+        <div class="sg"><span class="sgl">Data & Analytics</span><div class="sgitems"><span class="sk c">Pandas</span><span class="sk c">NumPy</span><span class="sk c">Power BI</span><span class="sk">Excel (Advanced)</span><span class="sk">Google Sheets</span><span class="sk">EDA</span><span class="sk">Statistical Analysis</span><span class="sk">A/B Testing</span><span class="sk">Cohort Analysis</span><span class="sk">RFM Segmentation</span><span class="sk">CLV Modeling</span><span class="sk">Matplotlib</span><span class="sk">Seaborn</span><span class="sk">Forecasting</span></div></div>
+        <div class="sg"><span class="sgl">Backend & Deployment</span><div class="sgitems"><span class="sk c">Flask</span><span class="sk c">REST APIs</span><span class="sk">Model Deployment</span><span class="sk">FastAPI (basic)</span><span class="sk">Docker (basic)</span><span class="sk">Git</span><span class="sk">GitHub</span><span class="sk">Jupyter</span><span class="sk">Google Colab</span><span class="sk">Vercel</span></div></div>
+        <div class="sg"><span class="sgl">Cloud & Tools</span><div class="sgitems"><span class="sk">Google Cloud</span><span class="sk">AWS (foundations)</span><span class="sk">Hugging Face Inference API</span><span class="sk">Postman</span><span class="sk">VS Code</span></div></div>
+        <div class="sg"><span class="sgl">Certifications</span>
+          <div class="cgrid">
+            <div class="cert"><div class="cnm">Quantitative Research</div><div class="corg">JPMorgan Chase</div></div>
+            <div class="cert"><div class="cnm">Strategy Consulting</div><div class="corg">BCG</div></div>
+            <div class="cert"><div class="cnm">GenAI Powered Analytics</div><div class="corg">Tata Group</div></div>
+            <div class="cert"><div class="cnm">Solutions Architecture</div><div class="corg">Amazon Web Services</div></div>
+            <div class="cert"><div class="cnm">Data Analytics & Cybersec</div><div class="corg">Deloitte Australia</div></div>
+            <div class="cert"><div class="cnm">Gen AI Exchange Hackathon</div><div class="corg">Google Cloud · National</div></div>
+          </div>
+        </div>
+        <div class="sg"><span class="sgl">Leadership</span>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="font-size:.74rem;color:var(--ink2);padding:7px 11px;border-radius:5px;border:1px solid var(--b);background:var(--sur)">Gold Medalist — IP University Sports Meet</div>
+            <div style="font-size:.74rem;color:var(--ink2);padding:7px 11px;border-radius:5px;border:1px solid var(--b);background:var(--sur)">Delhi Representative — All India Inter-University</div>
+            <div style="font-size:.74rem;color:var(--ink2);padding:7px 11px;border-radius:5px;border:1px solid var(--b);background:var(--sur)">VP, Sports Society — University Level</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="div"></div>
+
+<!-- RESEARCH -->
+<section id="research" class="sec" style="background:var(--bg3)">
+  <div class="si">
+    <div class="sh rev"><span class="lbl">Research</span><h2>Published.<br>Peer-reviewed.</h2><p>Click for full methodology, results, and contributions. Add paper links anytime — they'll activate automatically.</p></div>
+    <div class="rl">
+      <div class="rc rev d1" style="border-left-color:var(--l)" onclick="om('pdoc')">
+        <div class="rcat" style="color:var(--l)">Research Paper · Published · 2025</div>
+        <div class="rtit">Offline Document Understanding: A Study of OCR, LLMs & Semantic Retrieval</div>
+        <p class="rabs">Comprehensive analysis of OCR pipeline architectures, LLM-based text extraction, and semantic vector retrieval for offline document intelligence. Benchmarking across BM25, dense, and hybrid retrieval strategies.</p>
+        <div class="rcont"><span class="tag" style="color:var(--l)">OCR Architectures</span><span class="tag" style="color:var(--l)">LLM Extraction</span><span class="tag" style="color:var(--l)">FAISS</span><span class="tag" style="color:var(--l)">Hybrid Retrieval</span></div>
+        <div class="rhint">↗ Full paper details — add DOI link anytime</div>
+      </div>
+      <div class="rc rev d2" style="border-left-color:var(--r)" onclick="om('pfraud')">
+        <div class="rcat" style="color:var(--r)">Research Paper · Published · 2025</div>
+        <div class="rtit">Fraud Detection in Online Transactions using Ensemble ML with Imbalance Handling</div>
+        <p class="rabs">End-to-end fraud detection using ensemble methods with SMOTE. 95% accuracy with precision-recall optimized thresholds and full ablation study across feature subsets.</p>
+        <div class="rcont"><span class="tag" style="color:var(--r)">SMOTE</span><span class="tag" style="color:var(--r)">Ensemble ML</span><span class="tag" style="color:var(--r)">PR Optimization</span><span class="tag" style="color:var(--r)">95% Accuracy</span></div>
+        <div class="rhint">↗ Full paper details — add DOI link anytime</div>
+      </div>
+      <div class="rc rev d3" style="border-left-color:var(--g)" onclick="om('pemotion')">
+        <div class="rcat" style="color:var(--g)">Research Project · Deep Learning · 2025</div>
+        <div class="rtit">Multimodal Emotion Detection using Cross-Modal Vision + Language Fusion</div>
+        <p class="rabs">Cross-modal attention vs. late fusion comparison for emotion recognition across benchmark datasets. Vision + NLP modality fusion.</p>
+        <div class="rcont"><span class="tag" style="color:var(--g)">Multimodal Fusion</span><span class="tag" style="color:var(--g)">Cross-Modal Attention</span><span class="tag" style="color:var(--g)">CV + NLP</span></div>
+        <div class="rhint">↗ Full details</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mw"><div class="mt">
+  <span class="mi">Python<span class="md2"></span></span><span class="mi">BERT<span class="md2"></span></span><span class="mi">YOLOv8<span class="md2"></span></span><span class="mi">TensorFlow<span class="md2"></span></span><span class="mi">smolagents<span class="md2"></span></span><span class="mi">LLMs<span class="md2"></span></span><span class="mi">Flask<span class="md2"></span></span><span class="mi">OpenCV<span class="md2"></span></span><span class="mi">Scikit-learn<span class="md2"></span></span><span class="mi">Power BI<span class="md2"></span></span><span class="mi">FAISS<span class="md2"></span></span><span class="mi">HuggingFace<span class="md2"></span></span><span class="mi">RAG<span class="md2"></span></span><span class="mi">Prompt Engineering<span class="md2"></span></span><span class="mi">ReAct Agents<span class="md2"></span></span><span class="mi">SQL<span class="md2"></span></span>
+  <span class="mi">Python<span class="md2"></span></span><span class="mi">BERT<span class="md2"></span></span><span class="mi">YOLOv8<span class="md2"></span></span><span class="mi">TensorFlow<span class="md2"></span></span><span class="mi">smolagents<span class="md2"></span></span><span class="mi">LLMs<span class="md2"></span></span><span class="mi">Flask<span class="md2"></span></span><span class="mi">OpenCV<span class="md2"></span></span><span class="mi">Scikit-learn<span class="md2"></span></span><span class="mi">Power BI<span class="md2"></span></span><span class="mi">FAISS<span class="md2"></span></span><span class="mi">HuggingFace<span class="md2"></span></span><span class="mi">RAG<span class="md2"></span></span><span class="mi">Prompt Engineering<span class="md2"></span></span><span class="mi">ReAct Agents<span class="md2"></span></span><span class="mi">SQL<span class="md2"></span></span>
+</div></div>
+
+<!-- AI DEMO -->
+<section id="ai-demo" class="sec" style="background:var(--bg2)">
+  <div class="si">
+    <div class="sh rev" style="text-align:center"><span class="lbl" style="display:block;text-align:center">Interactive</span><h2 style="text-align:center">Ask my portfolio AI.</h2><p style="text-align:center;margin:10px auto 0;max-width:420px">Live Claude AI trained on my full CV. Works on parulsinhaa.vercel.app — not from local file:// URLs due to browser security.</p></div>
+    <div class="dout rev">
+      <div class="dhdr"><div class="dst"></div><span class="dtit">Parul's Portfolio AI</span><span class="dbdg">Claude API</span></div>
+      <div class="dmsgs" id="dm"><div class="msg ai"><div class="mav">PS</div><div class="mb2">I'm trained on Parul's full profile. Ask me anything — projects, skills, research, experience.</div></div></div>
+      <div class="dchs" id="dch">
+        <span class="chip" onclick="sc(this)">Strongest project?</span>
+        <span class="chip" onclick="sc(this)">Indian Navy internship?</span>
+        <span class="chip" onclick="sc(this)">AI agent skills?</span>
+        <span class="chip" onclick="sc(this)">Why hire Parul?</span>
+        <span class="chip" onclick="sc(this)">Research papers?</span>
+      </div>
+      <div class="dbot"><input class="dinp" id="di" type="text" placeholder="Ask about any project, skill, or experience..." onkeydown="if(event.key==='Enter')sm()"/><button class="dsnd" onclick="sm()">Send</button></div>
+      <div class="dnote" id="dn">Deploy to Vercel/Netlify for live AI. From local file:// the browser blocks the API call.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="cin">
+    <span class="clbl rev">Open to opportunities</span>
+    <h2 class="ch rev d1">Let's build<br><em>something together.</em></h2>
+    <p class="csub rev d2">Looking for AI/ML, Data Science, Business Analytics, and GenAI roles. I move fast, ship production work, and actually care about impact.</p>
+    <div class="cbs rev d3">
+      <a href="mailto:parul.sinha.ds2027@adgips.ac.in" class="btn bl">Send an email</a>
+      <a href="https://www.linkedin.com/in/parul-sinha-042024363/" class="btn bg3" target="_blank">LinkedIn</a>
+    </div>
+    <div class="rrow rev d4">
+      <span class="rbtn" onclick="or('ml')">ML / AI Resume</span>
+      <span class="rbtn" onclick="or('da')">Data Analyst Resume</span>
+      <span class="rbtn" onclick="or('genai')">GenAI Resume</span>
+    </div>
+    <div class="srow rev d5">
+      <a href="https://github.com/parulsinhaa" class="sli" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>parulsinhaa</a>
+      <a href="https://www.linkedin.com/in/parul-sinha-042024363/" class="sli" target="_blank"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>parul-sinha-042024363</a>
+      <a href="mailto:parul.sinha.ds2027@adgips.ac.in" class="sli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>ds2027@adgips.ac.in</a>
+      <a href="tel:+919818202521" class="sli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>+91 98182 02521</a>
+    </div>
+  </div>
+</section>
+
+<div class="foot"><span class="fl">PARUL SINHA · AI & DATA SCIENCE '27 · GGSIPU DELHI</span><span class="fl">© 2025</span></div>
+
+<!-- PROJECT MODAL -->
+<div class="mov" id="mov" onclick="cio(event)"><div class="mo" id="mo">
+  <div class="mohdr"><div><span class="mocat" id="mc"></span><div class="motit" id="mt"></div></div><div class="mox" onclick="cm()">✕</div></div>
+  <div class="mobdy" id="mb"></div>
+</div></div>
+
+<!-- RESUME PAGES -->
+<div class="rp" id="rp-ml">
+  <div class="rphdr"><button class="rpbk" onclick="cr2r('ml')">← Portfolio</button><span class="rptit">ML / AI Resume</span><span></span></div>
+  <div class="rpcnt">
+    <div class="rpname">Parul Sinha</div><span class="rprole">Machine Learning Engineer · AI Researcher · NLP Specialist</span>
+    <div class="rpc"><a href="mailto:parul.sinha.ds2027@adgips.ac.in">parul.sinha.ds2027@adgips.ac.in</a><a href="tel:+919818202521">+91 98182 02521</a><a href="https://github.com/parulsinhaa" target="_blank">github.com/parulsinhaa</a><a href="https://linkedin.com/in/parul-sinha-042024363/" target="_blank">LinkedIn</a><span style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--ghost)">Delhi, India</span></div>
+    <div class="rpsec"><span class="rpsl">Summary</span><p class="rpsump">AI & Data Science undergraduate (GGSIPU Delhi, 2027, CGPA 9.2) with production ML systems in defense, automotive, and fintech. Specialized in NLP, computer vision, and Agentic AI. 2 published research papers. 14+ shipped projects including 2 live deployed apps.</p></div>
+    <div class="rpsec"><span class="rpsl">Core ML Skills</span><div class="rpsg"><span class="rpsk h">Python</span><span class="rpsk h">TensorFlow</span><span class="rpsk h">HuggingFace</span><span class="rpsk h">Scikit-learn</span><span class="rpsk h">PyTorch</span><span class="rpsk h">BERT</span><span class="rpsk h">YOLOv8</span><span class="rpsk h">LLMs</span><span class="rpsk h">smolagents</span><span class="rpsk">OpenCV</span><span class="rpsk">FAISS</span><span class="rpsk">Flask</span><span class="rpsk">SQL</span><span class="rpsk">C++</span><span class="rpsk">SMOTE</span><span class="rpsk">Feature Engineering</span><span class="rpsk">Model Evaluation</span><span class="rpsk">Error Analysis</span><span class="rpsk">Hyperparameter Tuning</span><span class="rpsk">Prompt Engineering</span><span class="rpsk">RAG Systems</span><span class="rpsk">ReAct Agents</span><span class="rpsk">E2B Sandboxing</span><span class="rpsk">Git/GitHub</span></div></div>
+    <div class="rpsec"><span class="rpsl">Professional Experience</span>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">Data Scientist Intern</div><div class="rpdate">Aug – Nov 2025</div></div><div class="rporg">Indian Navy, India</div><ul class="rpbul"><li>Built ML models for real-time threat detection achieving 95% accuracy in operational environments</li><li>End-to-end pipeline: data ingestion → preprocessing → training → evaluation → production deployment</li><li>Improved generalization through hyperparameter tuning and rigorous cross-validation</li><li>Collaborated with defense engineering teams on model reliability and deployment readiness</li></ul></div>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">Data Analyst Intern</div><div class="rpdate">Jul – Aug 2025</div></div><div class="rporg">AMP Motors · Jaguar Land Rover</div><ul class="rpbul"><li>ML-informed customer segmentation improving lead targeting conversion</li><li>EDA on 50,000+ customer interaction records to surface behavioral patterns</li><li>Go-to-market insights adopted in Q3 2025 sales strategy</li></ul></div>
+    </div>
+    <div class="rpsec"><span class="rpsl">Key Projects</span>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">Drone Detection System (YOLOv8)</div><div class="rpdate">2025</div></div><ul class="rpbul"><li>90% mAP, 20+ FPS. Edge inference optimized. Production deployed in defense context.</li></ul></div>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">AI Agents Development (smolagents)</div><div class="rpdate">2025</div></div><ul class="rpbul"><li>Built multi-agent systems using smolagents: CodeAgent, ToolCallingAgent, ReAct framework</li><li>Multi-agent orchestration with Manager + Specialist agents. E2B sandboxing. Vision agents.</li></ul></div>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">Offline Document Understanding (Research Paper)</div><div class="rpdate">2025</div></div><ul class="rpbul"><li>OCR + LLM extraction + FAISS semantic retrieval. Published. BM25/dense/hybrid benchmarking.</li></ul></div>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">Fake News Detection — BERT</div><div class="rpdate">2025</div></div><ul class="rpbul"><li>Fine-tuned BERT. F1-optimized. Flask REST API deployed.</li></ul></div>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">Fraud Detection ML System (Research Paper)</div><div class="rpdate">2025</div></div><ul class="rpbul"><li>Ensemble ML (RF + LR) with SMOTE. 95% accuracy. Published with ablation study.</li></ul></div>
+    </div>
+    <div class="rpsec"><span class="rpsl">Education</span><div class="rpit"><div class="rpit-top"><div class="rptitle">B.Tech — CSE (AI & Data Science)</div><div class="rpdate">2023 – 2027</div></div><div class="rporg">GGSIPU Delhi · CGPA: 9.2 / 10</div></div></div>
+    <div class="rpsec"><span class="rpsl">Certifications</span><div class="rpsg"><span class="rpsk">JPMorgan — Quantitative Research</span><span class="rpsk">AWS — Solutions Architecture</span><span class="rpsk">Google Cloud — Gen AI Hackathon</span><span class="rpsk">Tata — GenAI Analytics</span><span class="rpsk">Deloitte — Data Analytics</span><span class="rpsk">BCG — Strategy Consulting</span></div></div>
+  </div>
+</div>
+
+<div class="rp" id="rp-da">
+  <div class="rphdr"><button class="rpbk" onclick="cr2r('da')">← Portfolio</button><span class="rptit">Data Analyst / Business Analyst Resume</span><span></span></div>
+  <div class="rpcnt">
+    <div class="rpname">Parul Sinha</div><span class="rprole">Data Analyst · Business Analyst · Decision Intelligence</span>
+    <div class="rpc"><a href="mailto:parul.sinha.ds2027@adgips.ac.in">parul.sinha.ds2027@adgips.ac.in</a><a href="tel:+919818202521">+91 98182 02521</a><a href="https://github.com/parulsinhaa" target="_blank">github.com/parulsinhaa</a><a href="https://linkedin.com/in/parul-sinha-042024363/" target="_blank">LinkedIn</a><span style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--ghost)">Delhi, India</span></div>
+    <div class="rpsec"><span class="rpsl">Summary</span><p class="rpsump">Data-driven problem solver turning raw datasets into business decisions. Proven in defense analytics, automotive sales intelligence, and e-commerce operations. CGPA 9.2. Strong SQL, Python, Power BI, and statistical analysis background.</p></div>
+    <div class="rpsec"><span class="rpsl">Analytics & BI Skills</span><div class="rpsg"><span class="rpsk h">SQL</span><span class="rpsk h">Python (Pandas, NumPy)</span><span class="rpsk h">Power BI</span><span class="rpsk h">Excel (Advanced)</span><span class="rpsk h">EDA</span><span class="rpsk h">Statistical Analysis</span><span class="rpsk">A/B Testing</span><span class="rpsk">Feature Engineering</span><span class="rpsk">Data Visualization</span><span class="rpsk">Cohort Analysis</span><span class="rpsk">RFM Segmentation</span><span class="rpsk">CLV Modeling</span><span class="rpsk">Churn Analysis</span><span class="rpsk">Forecasting</span><span class="rpsk">Matplotlib</span><span class="rpsk">Seaborn</span><span class="rpsk">Scikit-learn</span><span class="rpsk">Google Sheets</span></div></div>
+    <div class="rpsec"><span class="rpsl">Professional Experience</span>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">Data Scientist Intern</div><div class="rpdate">Aug – Nov 2025</div></div><div class="rporg">Indian Navy, India</div><ul class="rpbul"><li>Delivered analytics reports on model performance for non-technical defense leadership</li><li>Built data validation pipelines ensuring integrity across multi-source operational systems</li><li>Translated complex ML outputs into actionable operational recommendations</li></ul></div>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">Data Analyst / Sales & Marketing Intern</div><div class="rpdate">Jul – Aug 2025</div></div><div class="rporg">AMP Motors · Jaguar Land Rover</div><ul class="rpbul"><li>Analyzed 50,000+ customer touchpoints to identify conversion drivers and churn signals</li><li>Built Power BI dashboards tracking sales funnel KPIs; reduced reporting time ~40%</li><li>Segmentation analysis adopted in Q3 2025 go-to-market strategy by senior leadership</li><li>Supported go-to-market execution aligning messaging with customer preference clusters</li></ul></div>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">Founder & Head</div><div class="rpdate">Ongoing</div></div><div class="rporg">Crochee.co · E-commerce</div><ul class="rpbul"><li>Analytics-driven SKU forecasting and campaign A/B testing: improved conversion 25%+</li><li>CLV, churn, and repeat purchase cohort analysis in Python</li></ul></div>
+    </div>
+    <div class="rpsec"><span class="rpsl">Key Analytics Projects</span>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">Retail Customer 360° Engine</div><div class="rpdate">2025</div></div><ul class="rpbul"><li>50K+ transactions. RFM segmentation + CLV scoring enabling targeted marketing campaigns.</li></ul></div>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">HR Attrition Intelligence Platform</div><div class="rpdate">2025</div></div><ul class="rpbul"><li>Predictive BI for attrition. SHAP explainability for HR leadership. Salary/tenure/KPI drivers.</li></ul></div>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">Fraud Detection ML System (Published Research)</div><div class="rpdate">2025</div></div><ul class="rpbul"><li>Statistical pattern analysis of fraud signals. PR-optimized model. 95% accuracy.</li></ul></div>
+    </div>
+    <div class="rpsec"><span class="rpsl">Education</span><div class="rpit"><div class="rpit-top"><div class="rptitle">B.Tech — CSE (AI & Data Science)</div><div class="rpdate">2023 – 2027</div></div><div class="rporg">GGSIPU Delhi · CGPA: 9.2 / 10</div></div></div>
+    <div class="rpsec"><span class="rpsl">Achievements</span><ul class="rpbul"><li>Gold Medalist — IP University Sports Meet</li><li>Delhi Representative — All India Inter-University Competition</li><li>Google Campus Ambassador — Gemini AI, 300+ students engaged</li><li>VP, Sports Society — University Level</li></ul></div>
+  </div>
+</div>
+
+<div class="rp" id="rp-genai">
+  <div class="rphdr"><button class="rpbk" onclick="cr2r('genai')">← Portfolio</button><span class="rptit">GenAI / Agentic AI Resume</span><span></span></div>
+  <div class="rpcnt">
+    <div class="rpname">Parul Sinha</div><span class="rprole">GenAI Engineer · Agentic AI Builder · LLM Systems Developer</span>
+    <div class="rpc"><a href="mailto:parul.sinha.ds2027@adgips.ac.in">parul.sinha.ds2027@adgips.ac.in</a><a href="tel:+919818202521">+91 98182 02521</a><a href="https://github.com/parulsinhaa" target="_blank">github.com/parulsinhaa</a><a href="https://linkedin.com/in/parul-sinha-042024363/" target="_blank">LinkedIn</a></div>
+    <div class="rpsec"><span class="rpsl">Summary</span><p class="rpsump">GenAI and Agentic AI practitioner building production systems — RAG pipelines, multi-agent workflows, document intelligence, and LLM-powered applications. Google Campus Ambassador for Gemini AI. Google Cloud Gen AI Hackathon participant. 2 live deployed apps. CGPA 9.2.</p></div>
+    <div class="rpsec"><span class="rpsl">GenAI & Agentic AI Stack</span><div class="rpsg"><span class="rpsk h">smolagents (HuggingFace)</span><span class="rpsk h">ReAct Framework</span><span class="rpsk h">CodeAgent</span><span class="rpsk h">ToolCallingAgent</span><span class="rpsk h">Multi-Agent Systems</span><span class="rpsk h">LLM APIs (Claude, GPT)</span><span class="rpsk h">Google Gemini</span><span class="rpsk h">Prompt Engineering</span><span class="rpsk h">RAG Architecture</span><span class="rpsk h">FAISS</span><span class="rpsk h">OCR Pipelines</span><span class="rpsk">E2B Sandboxing</span><span class="rpsk">LiteLLM</span><span class="rpsk">DuckDuckGo Tool</span><span class="rpsk">Vision Agents (VLMs)</span><span class="rpsk">HuggingFace Inference API</span><span class="rpsk">LangChain (basic)</span><span class="rpsk">Vector Databases</span><span class="rpsk">Flask</span><span class="rpsk">REST APIs</span><span class="rpsk">Python</span></div></div>
+    <div class="rpsec"><span class="rpsl">GenAI & Agentic Projects</span>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">AI Agents Development using smolagents (HuggingFace)</div><div class="rpdate">2025</div></div><ul class="rpbul"><li>Built autonomous agents using the ReAct (Thought → Action → Observation) cycle for multi-step problem solving</li><li>CodeAgent: generates and executes Python code for reasoning; ToolCallingAgent: JSON-based structured tool calls</li><li>Integrated tools: DuckDuckGoSearchTool, custom Python functions, web search chains</li><li>Designed multi-agent systems: Manager Agent for orchestration + specialized Web Search Agent</li><li>Implemented E2B sandboxing for secure code execution with restricted imports</li><li>Worked with HfApiModel, LiteLLM multi-provider support, and Vision Agents (VLMs)</li></ul></div>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">Offline Document Understanding Pipeline (Published Research)</div><div class="rpdate">2025</div></div><ul class="rpbul"><li>OCR → LLM semantic extraction → FAISS vector retrieval. Hybrid BM25/dense benchmarking. Published.</li></ul></div>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">CareerForge — Live GenAI Application</div><div class="rpdate">2025</div></div><ul class="rpbul"><li>AI-powered career tools: resume analysis, job matching, interview prep — deployed at careerrforge.vercel.app</li></ul></div>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">Astra AI — LLM Assistant</div><div class="rpdate">2025</div></div><ul class="rpbul"><li>Full-stack LLM assistant with conversation memory, context window management, Flask REST backend.</li></ul></div>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">Google Cloud Gen AI Exchange Hackathon</div><div class="rpdate">2025</div></div><ul class="rpbul"><li>"Generative AI for Demystifying Legal Documents" — document understanding + extraction with Google Cloud GenAI tools</li></ul></div>
+    </div>
+    <div class="rpsec"><span class="rpsl">GenAI Experience</span>
+      <div class="rpit"><div class="rpit-top"><div class="rptitle">Google Campus Ambassador — Gemini AI</div><div class="rpdate">Oct 2025 – Jan 2026</div></div><div class="rporg">Google</div><ul class="rpbul"><li>Represented Google Gemini AI at campus; engaged 300+ students in GenAI adoption</li><li>Ran workshops on prompt engineering, GenAI tools, and Google Cloud infrastructure</li></ul></div>
+    </div>
+    <div class="rpsec"><span class="rpsl">Education</span><div class="rpit"><div class="rpit-top"><div class="rptitle">B.Tech — CSE (AI & Data Science)</div><div class="rpdate">2023 – 2027</div></div><div class="rporg">GGSIPU Delhi · CGPA: 9.2 / 10</div></div></div>
+  </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+const crEl=document.getElementById('cr'),cr2El=document.getElementById('cr2');
+let mx=0,my=0,fx=0,fy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function L(){fx+=(mx-fx)*.15;fy+=(my-fy)*.15;crEl.style.transform=`translate(${mx-3.5}px,${my-3.5}px)`;cr2El.style.transform=`translate(${fx-14}px,${fy-14}px)`;requestAnimationFrame(L);})();
+
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});},{threshold:.1});
+document.querySelectorAll('.rev,.revl,.revr').forEach(el=>io.observe(el));
+setTimeout(()=>document.querySelectorAll('#hero .rev').forEach(el=>el.classList.add('on')),80);
+const sio=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.rev:not(.on),.revl:not(.on),.revr:not(.on)').forEach((el,i)=>setTimeout(()=>el.classList.add('on'),i*55));}});},{threshold:.04});
+document.querySelectorAll('section').forEach(s=>sio.observe(s));
+
+document.querySelectorAll('.tilt').forEach(c=>{
+  c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(900px) rotateY(${x*5}deg) rotateX(${-y*5}deg) translateY(-4px)`;});
+  c.addEventListener('mouseleave',()=>c.style.transform='');
+});
+
+const cv2=document.getElementById('cv'),ctx=cv2.getContext('2d');
+let W,H,pts=[];
+function resize(){W=cv2.width=window.innerWidth;H=cv2.height=window.innerHeight;pts=Array.from({length:65},()=>{const vx=(Math.random()-.5)*.15,vy=(Math.random()-.5)*.15;return{x:Math.random()*W,y:Math.random()*H,vx,vy,ovx:vx,ovy:vy,r:Math.random()*1.2+.3,a:Math.random()*.18+.04};});}
+let pmx=-9e9,pmy=-9e9;document.addEventListener('mousemove',e=>{pmx=e.clientX;pmy=e.clientY;});
+(function draw(){ctx.clearRect(0,0,W,H);for(const p of pts){const dx=p.x-pmx,dy=p.y-pmy,d=Math.sqrt(dx*dx+dy*dy);if(d<90){const f=(90-d)/90;p.vx+=(dx/d)*f*.5;p.vy+=(dy/d)*f*.5;}p.vx=p.vx*.97+p.ovx*.03;p.vy=p.vy*.97+p.ovy*.03;p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(160,68,85,${p.a})`;ctx.fill();}for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const a=pts[i],b=pts[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<72){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(160,68,85,${(1-d/72)*.025})`;ctx.lineWidth=.5;ctx.stroke();}}requestAnimationFrame(draw);})();
+window.addEventListener('resize',resize);resize();
+
+function ac(el,to,sfx,dec,dur=1400){const s=performance.now();(function t(n){const p=Math.min((n-s)/dur,1),e=1-Math.pow(1-p,4);el.textContent=(dec?(to*e).toFixed(1):Math.round(to*e))+sfx;if(p<1)requestAnimationFrame(t);})(s);}
+const cto=new IntersectionObserver(es=>{if(es[0].isIntersecting){ac(document.getElementById('c1'),14,'+',0);ac(document.getElementById('c2'),2,'',0);ac(document.getElementById('c3'),9.2,'',1);ac(document.getElementById('c4'),95,'%',0);ac(document.getElementById('c5'),2,'',0);cto.disconnect();}},{threshold:.4});
+cto.observe(document.querySelector('.hst'));
+
+const MD={
+  drone:{cat:'Defense · Computer Vision · Featured',tit:'Drone Detection System',body:`<div class="mose"><span class="mosl">Overview</span><p class="motxt">Custom YOLOv8 object detection pipeline for aerial drone identification with edge-level inference optimization. Deployed in operational defense context.</p></div><div class="mose"><span class="mosl">Architecture</span><p class="motxt">YOLOv8 base → custom dataset curation → multi-stage augmentation (rotations, weather simulation, altitude variation) → edge inference optimization → real-time video at 20+ FPS.</p></div><div class="mose"><span class="mosl">Results</span><div class="momet" style="background:var(--rl);color:var(--rd)">90%+ mAP</div> <div class="momet" style="background:var(--rl);color:var(--rd)">20+ FPS</div> <div class="momet" style="background:var(--rl);color:var(--rd)">Production deployed</div></div><div class="mose"><span class="mosl">Stack</span><div class="motags"><span class="tag">YOLOv8</span><span class="tag">OpenCV</span><span class="tag">Python</span><span class="tag">Edge Inference</span><span class="tag">Data Augmentation</span></div></div><p class="monote">GitHub link activates once repo is made public. Add it to the plink element above.</p>`},
+  doc:{cat:'NLP · LLM Systems · Published Research',tit:'Offline Document Understanding',body:`<div class="mose"><span class="mosl">Overview</span><p class="motxt">Published research on OCR pipelines, LLM-based extraction, and FAISS semantic vector retrieval for offline document intelligence.</p></div><div class="mose"><span class="mosl">Pipeline</span><p class="motxt">Document ingestion → OCR extraction → LLM-based semantic chunking → FAISS vector indexing → query-time hybrid retrieval (BM25 + dense). Hybrid strategy benchmarked across multiple corpora.</p></div><div class="mose"><span class="mosl">Key Finding</span><p class="motxt">Hybrid retrieval outperformed both sparse and dense-only strategies. LLM extraction significantly improved entity resolution vs rule-based approaches.</p></div><div class="mose"><span class="mosl">Stack</span><div class="motags"><span class="tag">LLMs</span><span class="tag">OCR</span><span class="tag">FAISS</span><span class="tag">Semantic Search</span><span class="tag">Python</span><span class="tag">HuggingFace</span><span class="tag">BM25</span></div></div><p class="monote">Add paper DOI here once published: update the rc element's onclick or add an anchor tag.</p>`},
+  bert:{cat:'NLP · Transformers',tit:'Fake News Detection (BERT)',body:`<div class="mose"><span class="mosl">Overview</span><p class="motxt">Misinformation detection system using fine-tuned BERT. Complete pipeline from data preprocessing through production API.</p></div><div class="mose"><span class="mosl">Methodology</span><p class="motxt">Dataset curation → WordPiece tokenization → BERT (bert-base-uncased) fine-tuning with LR scheduling → F1-score optimization → error analysis on false positives → Flask REST API deployment.</p></div><div class="mose"><span class="mosl">Stack</span><div class="motags"><span class="tag">BERT</span><span class="tag">HuggingFace</span><span class="tag">TensorFlow</span><span class="tag">Flask</span><span class="tag">Python</span><span class="tag">NLP</span></div></div><p class="monote">Add GitHub repo link once public.</p>`},
+  fraud:{cat:'ML · Finance · Published Research',tit:'Fraud Detection ML System',body:`<div class="mose"><span class="mosl">Overview</span><p class="motxt">Published research on end-to-end fraud detection with ensemble methods and SMOTE imbalance handling.</p></div><div class="mose"><span class="mosl">Methodology</span><p class="motxt">Dataset analysis (99:1 class imbalance) → SMOTE oversampling → feature engineering (transaction velocity, merchant risk, temporal patterns) → RF + LR ensemble → precision-recall threshold optimization → ablation study.</p></div><div class="mose"><span class="mosl">Results</span><div class="momet" style="background:var(--al);color:var(--a)">95% Accuracy</div> <div class="momet" style="background:var(--al);color:var(--a)">Published Paper</div> <div class="momet" style="background:var(--al);color:var(--a)">Full Ablation Study</div></div><div class="mose"><span class="mosl">Stack</span><div class="motags"><span class="tag">Scikit-learn</span><span class="tag">SMOTE</span><span class="tag">Random Forest</span><span class="tag">Logistic Regression</span><span class="tag">Python</span><span class="tag">Pandas</span></div></div><p class="monote">Add paper DOI once available.</p>`},
+  photobooth:{cat:'Computer Vision · Live App',tit:'AI Photobooth',body:`<div class="mose"><span class="mosl">Overview</span><p class="motxt">Real-time AI photobooth with deep learning face detection and dynamic filter application. Publicly deployed and accessible.</p></div><div class="mose"><span class="mosl">Live App</span><p class="motxt"><a href="https://photobooth.vercel.app" target="_blank" style="color:var(--r);font-weight:600;">photobooth.vercel.app</a> — click to open</p></div><div class="mose"><span class="mosl">Stack</span><div class="motags"><span class="tag">OpenCV</span><span class="tag">Flask</span><span class="tag">Python</span><span class="tag">Deep Learning</span><span class="tag">Real-time CV</span></div></div>`},
+  careerforge:{cat:'GenAI · Full-stack · Live App',tit:'CareerForge',body:`<div class="mose"><span class="mosl">Overview</span><p class="motxt">AI-powered career development platform: resume analysis, job matching, interview preparation. Built with LLM APIs and deployed live.</p></div><div class="mose"><span class="mosl">Live App</span><p class="motxt"><a href="https://careerrforge.vercel.app" target="_blank" style="color:var(--l);font-weight:600;">careerrforge.vercel.app</a> — click to open</p></div><div class="mose"><span class="mosl">Stack</span><div class="motags"><span class="tag">LLMs</span><span class="tag">Flask</span><span class="tag">REST APIs</span><span class="tag">Python</span><span class="tag">Prompt Engineering</span></div></div>`},
+  agents:{cat:'Agentic AI · HuggingFace smolagents',tit:'AI Agents Development (smolagents)',body:`<div class="mose"><span class="mosl">Overview</span><p class="motxt">Exploration and practical implementation of Agentic AI using HuggingFace's smolagents framework. Autonomous multi-step problem solving with LLMs.</p></div><div class="mose"><span class="mosl">Key Concepts</span><p class="motxt"><strong>ReAct Cycle:</strong> Thought → Action → Observation loop for iterative task solving.<br/><br/><strong>Agent Types:</strong> CodeAgent (generates and executes Python code) vs ToolCallingAgent (structured JSON-based tool calls).<br/><br/><strong>Multi-Agent Systems:</strong> Manager Agent orchestrating specialized agents (Web Search Agent) for improved scalability and modularity.</p></div><div class="mose"><span class="mosl">Tools Built</span><div class="motags"><span class="tag">DuckDuckGoSearchTool</span><span class="tag">Custom Python Functions</span><span class="tag">Web Search Chains</span></div></div><div class="mose"><span class="mosl">Security</span><p class="motxt">E2B sandboxing for secure code execution with restricted imports. Safe agent deployment.</p></div><div class="mose"><span class="mosl">Stack</span><div class="motags"><span class="tag">smolagents</span><span class="tag">HuggingFace</span><span class="tag">HfApiModel</span><span class="tag">LiteLLM</span><span class="tag">E2B Sandbox</span><span class="tag">DuckDuckGo</span><span class="tag">Python</span><span class="tag">Vision Agents</span></div></div><div class="mose"><span class="mosl">Outcome</span><p class="motxt">Strong foundation in Agentic AI enabling: automated research agents, AI assistants with tool access, multi-agent workflows, and Agentic RAG systems.</p></div>`},
+  emotion:{cat:'Deep Learning · Research',tit:'Multimodal Emotion Detection',body:`<div class="mose"><span class="mosl">Overview</span><p class="motxt">Emotion recognition combining computer vision and NLP modalities. Cross-modal attention vs late fusion benchmarked.</p></div><div class="mose"><span class="mosl">Architecture</span><p class="motxt">Vision branch: CNN facial feature extraction. Language branch: transformer text embedding. Fusion: late concatenation vs cross-modal attention. Benchmarked on FER2013, AffectNet, CMU-MOSI.</p></div><div class="mose"><span class="mosl">Stack</span><div class="motags"><span class="tag">TensorFlow</span><span class="tag">OpenCV</span><span class="tag">HuggingFace</span><span class="tag">Python</span><span class="tag">Cross-Modal Attention</span></div></div>`},
+  hr:{cat:'BI · Predictive Analytics',tit:'HR Attrition Intelligence Platform',body:`<div class="mose"><span class="mosl">Overview</span><p class="motxt">Predictive BI revealing employee attrition drivers across salary bands, tenure, and KPI distributions. SHAP explainability for HR leadership.</p></div><div class="mose"><span class="mosl">Methodology</span><p class="motxt">EDA on HR dataset → feature importance (salary, tenure, satisfaction, department) → classification model → SHAP explainability → Power BI dashboard → KPI segmentation.</p></div><div class="mose"><span class="mosl">Stack</span><div class="motags"><span class="tag">Scikit-learn</span><span class="tag">SHAP</span><span class="tag">Power BI</span><span class="tag">Python</span><span class="tag">EDA</span></div></div>`},
+  retail:{cat:'Analytics · Marketing Science',tit:'Retail Customer 360° Engine',body:`<div class="mose"><span class="mosl">Overview</span><p class="motxt">Retail analytics on 50,000+ transactions. RFM segmentation, CLV scoring, churn prediction for targeted marketing strategy.</p></div><div class="mose"><span class="mosl">Methodology</span><p class="motxt">Transaction cleaning → RFM score calculation → customer segment clustering (K-Means) → CLV prediction → churn probability scoring → campaign targeting recommendations.</p></div><div class="mose"><span class="mosl">Stack</span><div class="motags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Scikit-learn</span><span class="tag">K-Means</span><span class="tag">Power BI</span><span class="tag">SQL</span></div></div>`},
+  finpilot:{cat:'Finance · ML',tit:'FinPilot',body:`<div class="mose"><span class="mosl">Overview</span><p class="motxt">ML-driven financial insight tool with anomaly detection, trend forecasting, and Power BI dashboards.</p></div><div class="mose"><span class="mosl">Stack</span><div class="motags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Scikit-learn</span><span class="tag">Power BI</span><span class="tag">SQL</span></div></div>`},
+  stock:{cat:'Finance · Time Series',tit:'StockSenseAI',body:`<div class="mose"><span class="mosl">Overview</span><p class="motxt">Time-series ML for stock trend analysis. Feature-engineered OHLCV signals. LSTM + classical models compared.</p></div><div class="mose"><span class="mosl">Stack</span><div class="motags"><span class="tag">TensorFlow</span><span class="tag">LSTM</span><span class="tag">NumPy</span><span class="tag">Pandas</span><span class="tag">Time Series</span></div></div>`},
+  astra:{cat:'GenAI · Full-stack',tit:'Astra AI',body:`<div class="mose"><span class="mosl">Overview</span><p class="motxt">Full-stack AI assistant with conversation memory, context window management, and Flask REST API backend.</p></div><div class="mose"><span class="mosl">Stack</span><div class="motags"><span class="tag">LLMs</span><span class="tag">Flask</span><span class="tag">REST APIs</span><span class="tag">Python</span><span class="tag">Prompt Engineering</span></div></div>`},
+  student:{cat:'EdTech · Predictive ML',tit:'Student Performance Predictor',body:`<div class="mose"><span class="mosl">Overview</span><p class="motxt">ML classification predicting academic performance from behavioral and demographic features. SHAP-based interpretability for educators.</p></div><div class="mose"><span class="mosl">Stack</span><div class="motags"><span class="tag">Scikit-learn</span><span class="tag">Python</span><span class="tag">EDA</span><span class="tag">SHAP</span><span class="tag">Feature Engineering</span></div></div>`},
+  pdoc:{cat:'Research Paper · Published · 2025',tit:'Offline Document Understanding: A Study of OCR, LLMs & Semantic Retrieval',body:`<div class="mose"><span class="mosl">Abstract</span><p class="motxt">Comprehensive analysis of OCR pipeline architectures, LLM-based text extraction strategies, and semantic vector retrieval for offline document intelligence. Complete benchmarking across BM25, dense, and hybrid retrieval on domain-specific corpora.</p></div><div class="mose"><span class="mosl">Contributions</span><p class="motxt">1) Systematic OCR engine comparison for unstructured documents. 2) LLM-based semantic chunking outperforms rule-based extraction on complex layouts. 3) Hybrid retrieval (BM25 + FAISS dense) achieves best overall performance. 4) Complete reproducible workflow.</p></div><div class="mose"><span class="mosl">Keywords</span><div class="motags"><span class="tag">OCR</span><span class="tag">LLMs</span><span class="tag">RAG</span><span class="tag">FAISS</span><span class="tag">Semantic Retrieval</span><span class="tag">Document AI</span><span class="tag">NLP</span></div></div><p class="monote">Add paper DOI and journal name here once available. The link in the research card above will activate automatically.</p>`},
+  pfraud:{cat:'Research Paper · Published · 2025',tit:'Fraud Detection in Online Transactions using Ensemble ML',body:`<div class="mose"><span class="mosl">Abstract</span><p class="motxt">End-to-end fraud detection pipeline using ensemble methods with advanced class imbalance handling. 95% accuracy with precision-recall optimized thresholds. Full ablation study.</p></div><div class="mose"><span class="mosl">Contributions</span><p class="motxt">1) SMOTE oversampling for extreme class imbalance (99:1). 2) Feature engineering revealing transaction velocity and merchant-category risk signals. 3) RF + LR ensemble outperforms single models by 4-6%. 4) Business-aligned precision-recall threshold optimization.</p></div><div class="mose"><span class="mosl">Results</span><div class="momet" style="background:var(--rl);color:var(--rd)">95% Accuracy</div> <div class="momet" style="background:var(--rl);color:var(--rd)">Published Paper</div></div><div class="mose"><span class="mosl">Keywords</span><div class="motags"><span class="tag">Fraud Detection</span><span class="tag">SMOTE</span><span class="tag">Random Forest</span><span class="tag">Ensemble ML</span><span class="tag">Imbalanced Classification</span></div></div><p class="monote">Add paper DOI and venue here once published.</p>`},
+  pemotion:{cat:'Research Project · Deep Learning · 2025',tit:'Multimodal Emotion Detection',body:`<div class="mose"><span class="mosl">Overview</span><p class="motxt">Cross-modal attention vs. late fusion for multimodal emotion recognition. Vision + NLP modality comparison across benchmark datasets.</p></div><div class="mose"><span class="mosl">Finding</span><p class="motxt">Cross-modal attention outperformed late fusion on ambiguous emotional expressions, enabling modalities to inform each other during encoding rather than only at decision layer.</p></div><div class="mose"><span class="mosl">Keywords</span><div class="motags"><span class="tag">Multimodal</span><span class="tag">Emotion Recognition</span><span class="tag">Cross-Modal Attention</span><span class="tag">CV + NLP</span></div></div>`}
+};
+
+function om(k){const d=MD[k];if(!d)return;document.getElementById('mc').textContent=d.cat;document.getElementById('mt').textContent=d.tit;document.getElementById('mb').innerHTML=d.body;document.getElementById('mov').classList.add('open');document.body.style.overflow='hidden';}
+function cm(){document.getElementById('mov').classList.remove('open');document.body.style.overflow='';}
+function cio(e){if(e.target===document.getElementById('mov'))cm();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cm();});
+
+function or(t){document.getElementById('rp-'+t).classList.add('open');document.body.style.overflow='hidden';document.getElementById('rp-'+t).scrollTop=0;}
+function cr2r(t){document.getElementById('rp-'+t).classList.remove('open');document.body.style.overflow='';}
+
+const CTX=`You are Parul Sinha's portfolio AI. Answer concisely and factually.
+Name: Parul Sinha | B.Tech CSE-AI & DS, GGSIPU Delhi (2023-2027), CGPA 9.2
+GitHub: github.com/parulsinhaa | LinkedIn: linkedin.com/in/parul-sinha-042024363/ | Email: parul.sinha.ds2027@adgips.ac.in | +91 9818202521
+LIVE APPS: photobooth.vercel.app | careerrforge.vercel.app
+INTERNSHIPS: Data Scientist (Indian Navy, Aug-Nov 2025, 95% accuracy ML, production deployed) | Data Analyst (AMP Motors/JLR, Jul-Aug 2025, EDA, Power BI, customer analytics) | Google Campus Ambassador (Google Gemini, Oct 2025-Jan 2026, 300+ students) | Founder: Crochee.co
+PROJECTS: Drone Detection (YOLOv8, 90% mAP, 20+ FPS, defense), Offline Document Understanding (OCR+LLMs+FAISS, published), Fake News BERT (Flask API), Fraud Detection (95%, SMOTE, published), AI Agents (smolagents, ReAct, multi-agent, E2B), Photobooth (live), CareerForge (live), Multimodal Emotion Detection, HR Attrition, Retail 360, FinPilot, StockSenseAI, Astra AI, Student Predictor
+SKILLS: Python, SQL, C++, TensorFlow, HuggingFace, BERT, YOLOv8, smolagents, LLMs, Flask, OpenCV, Pandas, NumPy, Power BI, FAISS, Git, Prompt Engineering, RAG, ReAct Framework, E2B Sandboxing, LiteLLM, DuckDuckGo Tool
+RESEARCH: 2 published papers. CERTS: JPMorgan, BCG, Tata, AWS, Deloitte, Google Cloud Gen AI Hackathon
+ACHIEVEMENTS: Gold Medalist IP University Sports, Delhi Rep All India Inter-University, VP Sports Society`;
+
+const dm=document.getElementById('dm'),di2=document.getElementById('di');
+let hist=[];
+
+function am(role,text){const d=document.createElement('div');d.className='msg '+role;const av=document.createElement('div');av.className='mav';av.textContent=role==='ai'?'PS':'U';const mb=document.createElement('div');mb.className='mb2';mb.textContent=text;d.appendChild(av);d.appendChild(mb);dm.appendChild(d);dm.scrollTop=dm.scrollHeight;}
+function at(){const d=document.createElement('div');d.className='msg ai typing';d.id='tym';d.innerHTML='<div class="mav">PS</div><div class="mb2"> </div>';dm.appendChild(d);dm.scrollTop=dm.scrollHeight;}
+async function sm(){const t=di2.value.trim();if(!t)return;di2.value='';am('user',t);hist.push({role:'user',content:t});at();
+try{const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:260,system:CTX,messages:hist})});const data=await r.json();document.getElementById('tym')?.remove();const rep=data.content?.[0]?.text||'Email Parul: parul.sinha.ds2027@adgips.ac.in';am('ai',rep);hist.push({role:'assistant',content:rep});}
+catch{document.getElementById('tym')?.remove();if(location.protocol==='file:'){am('ai','AI chat works on parulsinhaa.vercel.app — browsers block API calls from local file:// URLs. Deploy first.');document.getElementById('dn').style.display='block';}else{am('ai','Connection issue. Email: parul.sinha.ds2027@adgips.ac.in');}}}
+function sc(el){di2.value=el.textContent;document.getElementById('dch').style.display='none';sm();}
+</script>
+</body>
+</html>
